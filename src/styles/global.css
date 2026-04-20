@@ -48,6 +48,7 @@ code {
 
 pre {
   background: var(--code-bg) !important;
+  color: #e6edf3;
   border-radius: 8px;
   padding: 1.25rem;
   overflow-x: auto;
