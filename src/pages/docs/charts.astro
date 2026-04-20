@@ -1,0 +1,120 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Charts">
+  <p>DDF supports bar, pie, doughnut, and line charts — all defined in YAML.</p>
+
+  <h2>Bar Chart</h2>
+  <pre><code class="language-yaml">- type: chart
+  chart: bar
+  x: 0.5
+  y: 1.2
+  w: 5.5
+  h: 4.0
+  direction: col          # col (vertical) or bar (horizontal)
+  colors: [$chart1, $chart2]
+  series:
+    - name: "Recurring"
+      labels: ["Q1", "Q2", "Q3", "Q4"]
+      values: [2800, 3200, 3700, 4100]
+    - name: "One-time"
+      labels: ["Q1", "Q2", "Q3", "Q4"]
+      values: [400, 600, 500, 800]
+  style:
+    gridLines: subtle
+    legend: true
+    legendPos: b           # t, b, l, r
+    dataLabels: outEnd
+    axisColor: $muted</code></pre>
+
+  <h2>Pie Chart</h2>
+  <pre><code class="language-yaml">- type: chart
+  chart: pie
+  x: 0.5
+  y: 1.2
+  w: 4.5
+  h: 4.0
+  chartTitle: "By Segment"
+  colors: [$chart1, $chart2, $chart3, $chart4]
+  series:
+    - name: "Segment"
+      labels: ["Enterprise", "Mid-Market", "SMB", "Self-Serve"]
+      values: [45, 28, 18, 9]
+  style:
+    showPercent: true
+    legend: true
+    legendPos: b</code></pre>
+
+  <h2>Doughnut Chart</h2>
+  <pre><code class="language-yaml">- type: chart
+  chart: doughnut
+  x: 5.2
+  y: 1.2
+  w: 4.5
+  h: 4.0
+  chartTitle: "By Region"
+  colors: [$chart1, $chart2, $chart3, "A78BFA"]
+  series:
+    - name: "Region"
+      labels: ["North America", "EMEA", "APAC", "LATAM"]
+      values: [52, 24, 16, 8]
+  style:
+    showPercent: true
+    legend: true</code></pre>
+
+  <h2>Chart Properties</h2>
+  <table>
+    <thead>
+      <tr><th>Key</th><th>Type</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>chart</code></td><td>string</td><td><code>bar</code>, <code>pie</code>, <code>doughnut</code>, <code>line</code></td></tr>
+      <tr><td><code>direction</code></td><td>string</td><td><code>col</code> (vertical) or <code>bar</code> (horizontal). Bar charts only.</td></tr>
+      <tr><td><code>chartTitle</code></td><td>string</td><td>Title displayed on the chart</td></tr>
+      <tr><td><code>colors</code></td><td>array</td><td>Series/slice colors</td></tr>
+      <tr><td><code>series</code></td><td>array</td><td>Data series (see below)</td></tr>
+      <tr><td><code>style</code></td><td>object</td><td>Styling options</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Series Format</h2>
+  <pre><code class="language-yaml">series:
+  - name: "Series Name"
+    labels: ["Cat A", "Cat B", "Cat C"]
+    values: [10, 20, 30]</code></pre>
+  <p>Bar and line charts support multiple series. Pie and doughnut use a single series.</p>
+
+  <h2>Style Options</h2>
+  <table>
+    <thead>
+      <tr><th>Key</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>gridLines</code></td><td><code>subtle</code> or omit for none</td></tr>
+      <tr><td><code>legend</code></td><td><code>true</code> / <code>false</code></td></tr>
+      <tr><td><code>legendPos</code></td><td><code>t</code>, <code>b</code>, <code>l</code>, <code>r</code></td></tr>
+      <tr><td><code>dataLabels</code></td><td><code>outEnd</code>, <code>inEnd</code>, <code>center</code></td></tr>
+      <tr><td><code>showPercent</code></td><td>Show percentage labels (pie/doughnut)</td></tr>
+      <tr><td><code>axisColor</code></td><td>Color for axis lines</td></tr>
+    </tbody>
+  </table>
+</DocsLayout>
+
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+  }
+</style>

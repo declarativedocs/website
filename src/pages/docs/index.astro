@@ -1,0 +1,29 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Documentation">
+  <p>
+    The <strong>Declarative Document Format (DDF)</strong> lets you define documents as structured YAML and compile them into real files. The Python reference compiler currently supports <code>.pptx</code> (PowerPoint) with <code>.docx</code> and <code>.pdf</code> planned.
+  </p>
+
+  <h2>Quick Links</h2>
+  <ul>
+    <li><a href="/docs/getting-started/">Getting Started</a> — install and compile your first presentation</li>
+    <li><a href="/docs/yaml-schema/">YAML Schema</a> — top-level structure reference</li>
+    <li><a href="/docs/themes/">Themes</a> — colors, fonts, and <code>$variable</code> references</li>
+    <li><a href="/docs/masters/">Masters</a> — reusable slide templates</li>
+    <li><a href="/docs/slides/">Slides</a> — defining slide content</li>
+    <li><a href="/docs/elements/">Elements</a> — text, shapes, groups, images</li>
+    <li><a href="/docs/charts/">Charts</a> — bar, pie, doughnut, line</li>
+    <li><a href="/docs/tables/">Tables</a> — styled data tables</li>
+  </ul>
+
+  <h2>Design Principles</h2>
+  <ul>
+    <li><strong>Declarative</strong> — describe <em>what</em> you want, not how to build it</li>
+    <li><strong>Portable</strong> — YAML in, documents out; no vendor lock-in</li>
+    <li><strong>LLM-friendly</strong> — structured enough for AI to generate reliably</li>
+    <li><strong>Themeable</strong> — define once, apply everywhere</li>
+  </ul>
+</DocsLayout>

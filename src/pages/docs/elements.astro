@@ -1,0 +1,146 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Elements">
+  <p>Elements are the building blocks of slides. Each element has a <code>type</code> and positioning properties.</p>
+
+  <h2>Common Properties</h2>
+  <p>All elements accept these positioning properties (in inches):</p>
+  <table>
+    <thead>
+      <tr><th>Key</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>x</code></td><td>Horizontal position from left edge</td></tr>
+      <tr><td><code>y</code></td><td>Vertical position from top edge</td></tr>
+      <tr><td><code>w</code></td><td>Width</td></tr>
+      <tr><td><code>h</code></td><td>Height</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Text</h2>
+  <pre><code class="language-yaml">- type: text
+  x: 1
+  y: 2
+  w: 8
+  h: 1.5
+  text: "Hello, World!"
+  size: 24
+  font: $heading
+  color: $primary
+  bold: true
+  italic: false
+  align: center       # left, center, right
+  valign: middle      # top, middle, bottom</code></pre>
+
+  <h3>Bullets</h3>
+  <pre><code class="language-yaml">- type: text
+  x: 1
+  y: 1.5
+  w: 8
+  h: 3
+  size: 14
+  bullets:
+    - "First bullet point"
+    - "Second bullet point"
+    - &#123;text: "Bold bullet", bold: true, color: $accent&#125;</code></pre>
+
+  <h3>Runs (Rich Text)</h3>
+  <pre><code class="language-yaml">- type: text
+  x: 1
+  y: 2
+  w: 4
+  h: 2
+  runs:
+    - &#123;text: "$4.2M", size: 40, bold: true, color: $accent&#125;
+    - &#123;text: "Revenue", size: 13, color: $muted&#125;</code></pre>
+
+  <h2>Shape</h2>
+  <pre><code class="language-yaml">- type: shape
+  shape: rectangle    # rectangle, rounded, line, oval
+  x: 0
+  y: 0
+  w: 10
+  h: 0.06
+  fill: $accent
+  radius: 0.1        # for rounded rectangles
+  shadow: soft        # default, soft, or omit
+  line:
+    color: $muted
+    width: 1.5</code></pre>
+
+  <h2>Group</h2>
+  <p>Groups arrange items in row or grid layouts with automatic sizing:</p>
+
+  <h3>Row Layout</h3>
+  <pre><code class="language-yaml">- type: group
+  layout: row
+  x: 0.6
+  y: 1.3
+  w: 8.8
+  h: 2.0
+  gap: 0.3
+  card:
+    fill: $white
+    radius: 0.1
+    shadow: default
+  items:
+    - runs:
+        - &#123;text: "$4.2M", size: 40, bold: true&#125;
+        - &#123;text: "Revenue", size: 13, color: $muted&#125;
+    - runs:
+        - &#123;text: "89.3%", size: 40, bold: true&#125;
+        - &#123;text: "Retention", size: 13, color: $muted&#125;</code></pre>
+
+  <h3>Grid Layout</h3>
+  <pre><code class="language-yaml">- type: group
+  layout: grid
+  columns: 3
+  x: 0.6
+  y: 1.2
+  w: 8.8
+  h: 4.0
+  gap: 0.25
+  card:
+    fill: $white
+    radius: 0.08
+    border: "E0E4EA"
+  items:
+    - icon: &#123;name: gear, bg: $primary&#125;
+      runs:
+        - &#123;text: "Engineering", size: 14, bold: true&#125;
+        - &#123;text: "47 features shipped", size: 11&#125;</code></pre>
+
+  <h2>Group Properties</h2>
+  <table>
+    <thead>
+      <tr><th>Key</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>layout</code></td><td><code>row</code> or <code>grid</code></td></tr>
+      <tr><td><code>columns</code></td><td>Number of columns (grid only)</td></tr>
+      <tr><td><code>gap</code></td><td>Space between items (inches)</td></tr>
+      <tr><td><code>card</code></td><td>Styling for each item's container</td></tr>
+      <tr><td><code>items</code></td><td>Array of items (each can have <code>runs</code>, <code>icon</code>)</td></tr>
+    </tbody>
+  </table>
+</DocsLayout>
+
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+  }
+</style>

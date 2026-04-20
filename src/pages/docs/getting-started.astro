@@ -1,0 +1,53 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Getting Started">
+  <h2>Installation</h2>
+  <p>Requires Python 3.10+.</p>
+  <pre><code>pip install declarativedocs</code></pre>
+
+  <h2>CLI Usage</h2>
+  <p>The <code>ddf</code> command compiles a YAML file to its target format:</p>
+  <pre><code>ddf presentation.yaml</code></pre>
+  <p>This produces <code>presentation.pptx</code> in the same directory. You can also specify an output path:</p>
+  <pre><code>ddf presentation.yaml -o output/deck.pptx</code></pre>
+
+  <h2>Python API</h2>
+  <pre><code class="language-python">from declarativedocs import compile
+
+# Auto-detects format from YAML content
+output_path = compile("presentation.yaml")
+
+# Or specify output path explicitly
+output_path = compile("presentation.yaml", "output/deck.pptx")</code></pre>
+
+  <h2>Your First Presentation</h2>
+  <p>Create a file called <code>hello.yaml</code>:</p>
+  <pre><code class="language-yaml">presentation:
+  layout: "16x9"
+  title: "Hello DDF"
+
+  theme:
+    colors:
+      primary: "1E2761"
+      white: "FFFFFF"
+
+  slides:
+    - background: $primary
+      elements:
+        - type: text
+          x: 1
+          y: 2
+          w: 8
+          h: 2
+          text: "Hello, World!"
+          size: 48
+          color: $white
+          bold: true
+          align: center</code></pre>
+
+  <p>Then compile it:</p>
+  <pre><code>ddf hello.yaml
+# ✓ hello.pptx</code></pre>
+</DocsLayout>

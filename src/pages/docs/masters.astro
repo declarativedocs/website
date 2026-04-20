@@ -1,0 +1,89 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Masters">
+  <p>Masters are reusable slide templates. Define them once and reference them from any slide, passing data to fill placeholders.</p>
+
+  <h2>Defining a Master</h2>
+  <pre><code class="language-yaml">masters:
+  title_slide:
+    background: $primary
+    elements:
+      - type: text
+        x: 0.8
+        y: 1.2
+        w: 8.4
+        h: 2.2
+        text: "&#123;&#123;title&#125;&#125;"
+        font: $heading
+        size: 44
+        color: $white
+        bold: true
+        align: center
+      - type: text
+        x: 0.8
+        y: 4.4
+        w: 8.4
+        h: 0.9
+        text: "&#123;&#123;subtitle&#125;&#125;"
+        size: 18
+        color: $secondary
+        align: center</code></pre>
+
+  <h2>Placeholders</h2>
+  <p>Use double curly braces <code>&#123;&#123;name&#125;&#125;</code> in any text value. When a slide uses this master, it passes a <code>data</code> object to fill them:</p>
+  <pre><code class="language-yaml">slides:
+  - master: title_slide
+    data:
+      title: "Q3 Performance Review"
+      subtitle: "October 2025"</code></pre>
+
+  <h2>Master Properties</h2>
+  <table>
+    <thead>
+      <tr><th>Key</th><th>Type</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>background</code></td><td>string</td><td>Slide background color (hex or $variable)</td></tr>
+      <tr><td><code>elements</code></td><td>array</td><td>List of elements on the master (same as slide elements)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Adding Slide-Specific Elements</h2>
+  <p>A slide can use a master <em>and</em> add its own elements on top:</p>
+  <pre><code class="language-yaml">slides:
+  - master: content_slide
+    data:
+      title: "Key Metrics"
+    elements:
+      - type: chart
+        chart: bar
+        x: 0.5
+        y: 1.5
+        w: 9
+        h: 3.5
+        series:
+          - name: "Revenue"
+            labels: ["Q1", "Q2", "Q3"]
+            values: [2800, 3200, 3700]</code></pre>
+  <p>Master elements render first, then slide-specific elements layer on top.</p>
+</DocsLayout>
+
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+  }
+</style>

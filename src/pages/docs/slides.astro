@@ -1,0 +1,78 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Slides">
+  <p>The <code>slides</code> array defines your presentation content. Each item creates one slide.</p>
+
+  <h2>Basic Slide</h2>
+  <pre><code class="language-yaml">slides:
+  - background: $bg
+    elements:
+      - type: text
+        x: 1
+        y: 2
+        w: 8
+        h: 1
+        text: "Hello, World!"
+        size: 36
+        bold: true</code></pre>
+
+  <h2>Slide with Master</h2>
+  <p>Reference a defined master and pass data for its placeholders:</p>
+  <pre><code class="language-yaml">slides:
+  - master: section_header
+    data:
+      title: "Financial Highlights"
+      description: "Revenue and growth metrics"</code></pre>
+
+  <h2>Slide Properties</h2>
+  <table>
+    <thead>
+      <tr><th>Key</th><th>Type</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>master</code></td><td>string</td><td>Name of a master template to use</td></tr>
+      <tr><td><code>data</code></td><td>object</td><td>Key-value pairs for master placeholders</td></tr>
+      <tr><td><code>background</code></td><td>string</td><td>Slide background color</td></tr>
+      <tr><td><code>elements</code></td><td>array</td><td>List of elements on this slide</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Combining Masters and Elements</h2>
+  <p>A slide can inherit a master's layout and add additional elements:</p>
+  <pre><code class="language-yaml">slides:
+  - master: content_slide
+    data:
+      title: "Revenue Trend"
+    elements:
+      - type: chart
+        chart: bar
+        x: 0.5
+        y: 1.5
+        w: 9
+        h: 3.5
+        series:
+          - name: "Revenue"
+            labels: ["Q1", "Q2", "Q3"]
+            values: [2800, 3200, 3700]</code></pre>
+  <p>The master renders its background and title, then the chart is layered on top.</p>
+</DocsLayout>
+
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/docs/', label: 'Docs' },
+  { href: 'https://github.com/declarativedocs/compiler-py', label: 'GitHub' },
+  { href: 'https://pypi.org/project/declarativedocs/', label: 'PyPI' },
+];
+---
+
+<nav class="nav">
+  <a href="/" class="nav-brand">DDF</a>
+  <div class="nav-links">
+    {links.map(link => (
+      <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined}>
+        {link.label}
+      </a>
+    ))}
+  </div>
+</nav>
+
+<style>
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: var(--primary);
+    color: white;
+  }
+  .nav-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+  .nav-brand:hover {
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .nav-links a {
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  .nav-links a:hover {
+    color: white;
+    text-decoration: none;
+  }
+</style>

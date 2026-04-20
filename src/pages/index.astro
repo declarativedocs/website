@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+---
+
+<BaseLayout title="Declarative Document Format">
+  <Nav />
+  <main>
+    <section class="hero">
+      <h1>YAML to documents.</h1>
+      <p class="tagline">Define presentations, reports, and documents in plain YAML.<br/>Compile to .pptx, .docx, and .pdf with a single command.</p>
+      <div class="install">
+        <code>pip install declarativedocs</code>
+      </div>
+      <div class="hero-links">
+        <a href="/docs/getting-started/" class="btn btn-primary">Get Started</a>
+        <a href="https://github.com/declarativedocs/compiler-py" class="btn btn-outline">GitHub</a>
+      </div>
+    </section>
+
+    <section class="example">
+      <h2>What DDF looks like</h2>
+      <p class="example-note">This YAML compiles to a styled 8-slide presentation with charts, tables, and themed layouts:</p>
+      <pre><code class="language-yaml">presentation:
+  layout: "16x9"
+  title: "Acme Corp — Q3 2025 Review"
+
+  theme:
+    fonts:
+      heading: Georgia
+      body: Calibri
+    colors:
+      primary: "1E2761"
+      accent: "F96167"
+
+  masters:
+    title_slide:
+      background: $primary
+      elements:
+        - type: text
+          text: "&#123;&#123;title&#125;&#125;"
+          font: $heading
+          size: 44
+          color: $white
+
+  slides:
+    - master: title_slide
+      data:
+        title: "Q3 2025 Performance Review"
+
+    - master: content_slide
+      data:
+        title: "Key Metrics"
+      elements:
+        - type: group
+          layout: row
+          items:
+            - runs:
+                - &#123;text: "$4.2M", size: 40, bold: true&#125;
+                - &#123;text: "Revenue", size: 13&#125;
+
+        - type: chart
+          chart: bar
+          series:
+            - name: "Recurring"
+              labels: ["Q1", "Q2", "Q3"]
+              values: [2800, 3200, 3700]</code></pre>
+    </section>
+
+    <section class="features">
+      <h2>Features</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Presentations</h3>
+          <p>Full .pptx support — slides, masters, charts, tables, groups, and shapes.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Themeable</h3>
+          <p>Define colors and fonts once, reference them with <code>$variables</code> everywhere.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Reusable Masters</h3>
+          <p>Design slide templates with <code>&#123;&#123;placeholders&#125;&#125;</code> and reuse them across your deck.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Charts & Tables</h3>
+          <p>Bar, pie, doughnut charts and styled tables — all from YAML.</p>
+        </div>
+        <div class="feature-card">
+          <h3>CLI & Python API</h3>
+          <p>Use the <code>ddf</code> command or <code>from declarativedocs import compile</code>.</p>
+        </div>
+        <div class="feature-card">
+          <h3>LLM-friendly</h3>
+          <p>YAML is easy for AI models to generate — perfect for automated report pipelines.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Created by Kjeld Oostra. Apache-2.0 licensed.</p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 5rem 0 3rem;
+  }
+  .hero h1 {
+    font-size: 3.5rem;
+    color: var(--primary);
+  }
+  .tagline {
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin-top: 1rem;
+    line-height: 1.7;
+  }
+  .install {
+    margin-top: 2rem;
+  }
+  .install code {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--code-bg);
+    color: #e2e8f0;
+    border-radius: 6px;
+  }
+  .hero-links {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .btn:hover {
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+  .btn-primary:hover {
+    background: #151d4a;
+  }
+  .btn-outline {
+    border: 1.5px solid var(--primary);
+    color: var(--primary);
+  }
+  .btn-outline:hover {
+    background: var(--primary);
+    color: white;
+  }
+
+  .example {
+    padding: 3rem 0;
+  }
+  .example h2 {
+    text-align: center;
+  }
+  .example-note {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .features {
+    padding: 3rem 0;
+  }
+  .features h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .feature-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .feature-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  .feature-card p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+</style>

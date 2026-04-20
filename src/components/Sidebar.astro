@@ -1,0 +1,75 @@
+---
+const sections = [
+  { href: '/docs/', label: 'Overview' },
+  { href: '/docs/getting-started/', label: 'Getting Started' },
+  { href: '/docs/yaml-schema/', label: 'YAML Schema' },
+  { href: '/docs/themes/', label: 'Themes' },
+  { href: '/docs/masters/', label: 'Masters' },
+  { href: '/docs/slides/', label: 'Slides' },
+  { href: '/docs/elements/', label: 'Elements' },
+  { href: '/docs/charts/', label: 'Charts' },
+  { href: '/docs/tables/', label: 'Tables' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<aside class="sidebar">
+  <div class="sidebar-title">Documentation</div>
+  <ul>
+    {sections.map(s => (
+      <li>
+        <a href={s.href} class:list={[{ active: currentPath === s.href }]}>
+          {s.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</aside>
+
+<style>
+  .sidebar {
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    padding: 1.5rem 1rem;
+    min-height: calc(100vh - 56px);
+    position: fixed;
+    top: 56px;
+    left: 0;
+    overflow-y: auto;
+  }
+  .sidebar-title {
+    color: var(--sidebar-text);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    padding-left: 0.75rem;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 0.125rem;
+  }
+  a {
+    display: block;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    transition: background 0.15s, color 0.15s;
+  }
+  a:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    text-decoration: none;
+  }
+  a.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-weight: 500;
+  }
+</style>

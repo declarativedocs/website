@@ -1,0 +1,58 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Themes">
+  <p>Themes let you define colors and fonts in one place and reference them throughout your presentation using <code>$variable</code> syntax.</p>
+
+  <h2>Structure</h2>
+  <pre><code class="language-yaml">theme:
+  fonts:
+    heading: Georgia
+    body: Calibri
+  colors:
+    primary: "1E2761"
+    secondary: "CADCFC"
+    accent: "F96167"
+    bg: "F2F4F8"
+    white: "FFFFFF"
+    dark: "0F0F1F"
+    muted: "7B8794"</code></pre>
+
+  <h2>Color Values</h2>
+  <p>Colors are specified as 6-character hex strings <strong>without</strong> the <code>#</code> prefix:</p>
+  <pre><code class="language-yaml">colors:
+  primary: "1E2761"    # correct
+  # primary: "#1E2761" # wrong — do not include #</code></pre>
+
+  <h2>Using Variables</h2>
+  <p>Reference any theme value with a <code>$</code> prefix. This works in any color, font, or fill property:</p>
+  <pre><code class="language-yaml">elements:
+  - type: text
+    text: "Hello"
+    color: $primary       # resolves to "1E2761"
+    font: $heading        # resolves to "Georgia"
+  - type: shape
+    shape: rectangle
+    fill: $accent         # resolves to "F96167"</code></pre>
+
+  <h2>Chart Colors</h2>
+  <p>You can define named colors specifically for chart series:</p>
+  <pre><code class="language-yaml">colors:
+  chart1: "1E2761"
+  chart2: "F96167"
+  chart3: "2D9F6F"
+  chart4: "F9E795"
+
+# Then use in charts:
+elements:
+  - type: chart
+    colors: [$chart1, $chart2, $chart3]</code></pre>
+
+  <h2>Tips</h2>
+  <ul>
+    <li>You can define as many named colors as you need</li>
+    <li>Font names must match fonts available on the system that opens the .pptx</li>
+    <li>Variables are resolved at compile time — invalid references produce an error</li>
+  </ul>
+</DocsLayout>

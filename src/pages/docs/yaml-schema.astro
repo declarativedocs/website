@@ -1,0 +1,60 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="YAML Schema">
+  <p>Every DDF file has a root key that declares the document type. Currently supported: <code>presentation</code>.</p>
+
+  <h2>Top-level Structure</h2>
+  <pre><code class="language-yaml">presentation:
+  layout: "16x9"          # or "4x3"
+  title: "Deck Title"     # metadata
+  author: "Author Name"   # metadata
+
+  theme: ...              # colors, fonts
+  masters: ...            # reusable slide templates
+  slides: ...             # slide content</code></pre>
+
+  <h2>Root Keys</h2>
+  <table>
+    <thead>
+      <tr><th>Key</th><th>Type</th><th>Required</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>layout</code></td><td>string</td><td>No</td><td>Slide aspect ratio: <code>"16x9"</code> (default) or <code>"4x3"</code></td></tr>
+      <tr><td><code>title</code></td><td>string</td><td>No</td><td>Presentation title (metadata)</td></tr>
+      <tr><td><code>author</code></td><td>string</td><td>No</td><td>Author name (metadata)</td></tr>
+      <tr><td><code>theme</code></td><td>object</td><td>No</td><td>Theme definition (see <a href="/docs/themes/">Themes</a>)</td></tr>
+      <tr><td><code>masters</code></td><td>object</td><td>No</td><td>Named slide templates (see <a href="/docs/masters/">Masters</a>)</td></tr>
+      <tr><td><code>slides</code></td><td>array</td><td>Yes</td><td>List of slides (see <a href="/docs/slides/">Slides</a>)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Units</h2>
+  <p>All position and size values (<code>x</code>, <code>y</code>, <code>w</code>, <code>h</code>) are in <strong>inches</strong>. A 16:9 slide is 10" x 5.625".</p>
+
+  <h2>Future Root Keys</h2>
+  <p>Planned but not yet implemented:</p>
+  <ul>
+    <li><code>document:</code> — for .docx output</li>
+    <li><code>pdf:</code> — for .pdf output</li>
+  </ul>
+</DocsLayout>
+
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+  }
+</style>

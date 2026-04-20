@@ -1,0 +1,90 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Tables">
+  <p>Tables render styled data grids with configurable column widths, borders, and per-cell formatting.</p>
+
+  <h2>Basic Table</h2>
+  <pre><code class="language-yaml">- type: table
+  x: 0.6
+  y: 1.2
+  w: 8.8
+  h: 2.8
+  size: 11
+  font: $body
+  colWidths: [3.0, 1.8, 1.4, 1.4, 1.2]
+  border:
+    pt: 0.5
+    color: "DEE2E6"
+  rows:
+    - - &#123;text: "Account", bold: true, fill: $primary, color: $white&#125;
+      - &#123;text: "Stage", bold: true, fill: $primary, color: $white&#125;
+      - &#123;text: "Value", bold: true, fill: $primary, color: $white&#125;
+      - &#123;text: "Close Date", bold: true, fill: $primary, color: $white&#125;
+      - &#123;text: "Probability", bold: true, fill: $primary, color: $white&#125;
+    - ["GlobalTech Inc.", "Negotiation", "$420K", "Nov 15", "85%"]
+    - ["Meridian Health", "Proposal", "$380K", "Dec 1", "65%"]
+    - ["Atlas Logistics", "Discovery", "$290K", "Jan 15", "40%"]</code></pre>
+
+  <h2>Table Properties</h2>
+  <table>
+    <thead>
+      <tr><th>Key</th><th>Type</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>size</code></td><td>number</td><td>Default font size for all cells</td></tr>
+      <tr><td><code>font</code></td><td>string</td><td>Default font family</td></tr>
+      <tr><td><code>colWidths</code></td><td>array</td><td>Column widths in inches</td></tr>
+      <tr><td><code>border</code></td><td>object</td><td>Border styling (<code>pt</code> and <code>color</code>)</td></tr>
+      <tr><td><code>rows</code></td><td>array</td><td>Array of rows (see below)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Row Format</h2>
+  <p>Each row is an array of cells. A cell can be:</p>
+  <ul>
+    <li><strong>A string</strong> — plain text with default styling</li>
+    <li><strong>An object</strong> — text with per-cell formatting</li>
+  </ul>
+
+  <h3>Cell Object Properties</h3>
+  <table>
+    <thead>
+      <tr><th>Key</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>text</code></td><td>Cell content</td></tr>
+      <tr><td><code>bold</code></td><td>Bold text</td></tr>
+      <tr><td><code>color</code></td><td>Text color</td></tr>
+      <tr><td><code>fill</code></td><td>Cell background color</td></tr>
+      <tr><td><code>size</code></td><td>Override font size</td></tr>
+      <tr><td><code>align</code></td><td>Text alignment</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Tips</h2>
+  <ul>
+    <li>The sum of <code>colWidths</code> should approximately equal the table's <code>w</code> value</li>
+    <li>You can mix string and object cells in the same row</li>
+    <li>Use the first row with styled cells as a header row</li>
+  </ul>
+</DocsLayout>
+
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+  }
+</style>
