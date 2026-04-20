@@ -7,8 +7,8 @@ import Nav from '../components/Nav.astro';
   <Nav />
   <main>
     <section class="hero">
-      <h1>YAML to documents.</h1>
-      <p class="tagline">Define presentations, reports, and documents in plain YAML.<br/>Compile to .pptx, .docx, and .pdf with a single command.</p>
+      <h1>Documents as code.</h1>
+      <p class="tagline">Programmatic document creation is a verbose nightmare — for developers and LLMs alike.<br/>DDF is a concise YAML spec that compiles to .pptx, .docx, and .pdf.</p>
       <div class="install">
         <code>pip install declarativedocs</code>
       </div>
@@ -19,8 +19,8 @@ import Nav from '../components/Nav.astro';
     </section>
 
     <section class="example">
-      <h2>What DDF looks like</h2>
-      <p class="example-note">This YAML compiles to a styled 8-slide presentation with charts, tables, and themed layouts:</p>
+      <h2>Write YAML. Get styled documents.</h2>
+      <p class="example-note">An entire themed presentation — charts, tables, reusable masters — in a format any LLM can produce:</p>
       <pre><code class="language-yaml">presentation:
   layout: "16x9"
   title: "Acme Corp — Q3 2025 Review"
@@ -68,31 +68,31 @@ import Nav from '../components/Nav.astro';
     </section>
 
     <section class="features">
-      <h2>Features</h2>
+      <h2>Why DDF?</h2>
       <div class="feature-grid">
         <div class="feature-card">
-          <h3>Presentations</h3>
-          <p>Full .pptx support — slides, masters, charts, tables, groups, and shapes.</p>
+          <h3>Built for LLMs</h3>
+          <p>A structured, concise format that AI models produce reliably — no more 500-line python-pptx scripts.</p>
         </div>
         <div class="feature-card">
-          <h3>Themeable</h3>
-          <p>Define colors and fonts once, reference them with <code>$variables</code> everywhere.</p>
+          <h3>Version-controlled documents</h3>
+          <p>YAML diffs cleanly. Review deck changes in PRs. Generate reports in CI.</p>
         </div>
         <div class="feature-card">
-          <h3>Reusable Masters</h3>
-          <p>Design slide templates with <code>&#123;&#123;placeholders&#125;&#125;</code> and reuse them across your deck.</p>
+          <h3>Themed & consistent</h3>
+          <p>Define colors and fonts once with <code>$variables</code>. Every slide stays on-brand.</p>
         </div>
         <div class="feature-card">
-          <h3>Charts & Tables</h3>
-          <p>Bar, pie, doughnut charts and styled tables — all from YAML.</p>
+          <h3>Rich output</h3>
+          <p>Charts, tables, groups, shapes, masters — production-ready .pptx from a few lines of YAML.</p>
         </div>
         <div class="feature-card">
-          <h3>CLI & Python API</h3>
-          <p>Use the <code>ddf</code> command or <code>from declarativedocs import compile</code>.</p>
+          <h3>Simple integration</h3>
+          <p><code>ddf report.yaml</code> from the CLI, or <code>compile()</code> from Python. One dependency, no config.</p>
         </div>
         <div class="feature-card">
-          <h3>LLM-friendly</h3>
-          <p>YAML is easy for AI models to generate — perfect for automated report pipelines.</p>
+          <h3>Multi-format</h3>
+          <p>One spec for .pptx, .docx, and .pdf. Same YAML concepts, different output targets.</p>
         </div>
       </div>
     </section>
